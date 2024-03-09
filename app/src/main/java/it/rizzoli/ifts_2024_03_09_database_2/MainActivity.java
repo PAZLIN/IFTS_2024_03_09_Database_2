@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         listaSiti=new ArrayList<Sito>();
 
         while (cursor.moveToNext()) {
-            Integer id = cursor.getInt(cursor.getColumnIndex(DBadapter.KEY_ID));
+            int id = cursor.getInt(cursor.getColumnIndex(DBadapter.KEY_ID));
             String nome = cursor.getString(cursor.getColumnIndex(DBadapter.KEY_NOME));
             String url = cursor.getString(cursor.getColumnIndex(DBadapter.KEY_URL));
             listaSiti.add(new Sito(id, nome, url));

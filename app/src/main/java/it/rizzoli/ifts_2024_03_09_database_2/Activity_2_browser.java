@@ -2,6 +2,7 @@ package it.rizzoli.ifts_2024_03_09_database_2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,10 +27,14 @@ public class Activity_2_browser extends AppCompatActivity {
     public DBadapter dbAdapter;
     private SQLiteDatabase database;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity2_browser);
+
+        dbAdapter=new DBadapter(this);
+        dbAdapter.open();
 
         EditText editText = (EditText) findViewById(R.id.act2_et1);
         Button btn1 = (Button) findViewById(R.id.act2_btn1);
@@ -48,7 +53,6 @@ public class Activity_2_browser extends AppCompatActivity {
             wv.loadUrl(url);
 
 
-        // setto l'editText in modo che il testo si cancelli al click
         editText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +73,6 @@ public class Activity_2_browser extends AppCompatActivity {
             }
         });
 
-        // setto il bottone 1 per caricare url e nascondere keyboard alla pressione
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +82,6 @@ public class Activity_2_browser extends AppCompatActivity {
             }
         });
 
-        // setto il bottone 3 per tornare alla pagina principale
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,8 +89,7 @@ public class Activity_2_browser extends AppCompatActivity {
             }
         });
 
-        // setto il bottone 2 (cuore) per aggiungere il sito ai preferiti
-        // il database mi serve solo in questa unica circostanza per cui lo apro e lo chiudo qui
+
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,19 +111,11 @@ public class Activity_2_browser extends AppCompatActivity {
     }
 
 
-    // *******  *****  ***  ***  **  - - - - - - - - - - - - - - - -  **  ***  ***  *****  *******
-    // *******  *****  ***  ***  **  - - - - - - - - - - - - - - - -  **  ***  ***  *****  *******
-    // *******  *****  ***  ***  **  - - - - - - - - - - - - - - - -  **  ***  ***  *****  *******
-    // *******  *****  ***  ***  **  - - - METODI DI SUPPORTO  - - -  **  ***  ***  *****  *******
-
     // nascondi soft keyboard
     public void hideKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
     }
-
-    // carica url
-
 
 
 }
