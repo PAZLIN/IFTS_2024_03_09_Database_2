@@ -1,5 +1,6 @@
 package it.rizzoli.ifts_2024_03_09_database_2;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import java.util.List;
 public class SitoAdapter extends ArrayAdapter<Sito>{
 
     private Context ctx = null;
+
     private int res= 0;
 
     public SitoAdapter(Context context, int resource, List<Sito> list) {
@@ -29,13 +31,14 @@ public class SitoAdapter extends ArrayAdapter<Sito>{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Sito sito = getItem(position);
+        View view = convertView;
         if (convertView==null) {
-            convertView = LayoutInflater.from(ctx).inflate(android.R.layout.simple_list_item_1, parent, false);
+            view = (View) LayoutInflater.from(ctx).inflate(android.R.layout.simple_list_item_1, parent, false);
         }
-            TextView textView = (TextView) convertView.findViewById(android.R.id.text1);
+            TextView textView = (TextView) view.findViewById(android.R.id.text1);
             textView.setText(sito.getNome());
 
-            return convertView;
+            return view;
 
     }
 

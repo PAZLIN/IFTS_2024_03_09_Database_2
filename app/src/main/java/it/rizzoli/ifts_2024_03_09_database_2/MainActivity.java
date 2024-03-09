@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -31,14 +32,16 @@ public class MainActivity extends AppCompatActivity {
         dbAdapter = new DBadapter(this);
         dbAdapter.open();
 
+
         Cursor cursor = dbAdapter.ottieniSiti();
+
 
         listaSiti=new ArrayList<Sito>();
 
         while (cursor.moveToNext()) {
-            int id = cursor.getInt(cursor.getColumnIndex(DBadapter.KEY_ID));
-            String nome = cursor.getString(cursor.getColumnIndex(DBadapter.KEY_NOME));
-            String url = cursor.getString(cursor.getColumnIndex(DBadapter.KEY_URL));
+            @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(DBadapter.KEY_ID));
+            @SuppressLint("Range") String nome = cursor.getString(cursor.getColumnIndex(DBadapter.KEY_NOME));
+            @SuppressLint("Range") String url = cursor.getString(cursor.getColumnIndex(DBadapter.KEY_URL));
             listaSiti.add(new Sito(id, nome, url));
         }
 
