@@ -1,6 +1,10 @@
 package it.rizzoli.ifts_2024_03_09_database_2;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.webkit.WebView;
+
+import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 
@@ -11,10 +15,10 @@ public class Sito implements Serializable {
     private String url;
 
 
-    public Sito(int id, String nome, String url){
-        this.id=id;
-        this.nome=nome;
-        this.url=url;
+    public Sito(int id, String nome, String url) {
+        this.id = id;
+        this.nome = nome;
+        this.url = url;
     }
 
     public int getId() {
@@ -52,6 +56,5 @@ public class Sito implements Serializable {
         int end = url.lastIndexOf('.');
         return url.substring(start + 1, end);
     }
-
 
 }
