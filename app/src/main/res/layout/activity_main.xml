@@ -16,7 +16,7 @@
 
 
     <ListView
-        android:id="@+id/act1_list1"
+        android:id="@+id/act1_listView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"/>

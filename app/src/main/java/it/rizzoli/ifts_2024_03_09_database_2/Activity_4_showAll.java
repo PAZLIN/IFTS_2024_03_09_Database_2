@@ -27,7 +27,7 @@ public class Activity_4_showAll extends AppCompatActivity {
 
         dBadapter=new DBadapter(this);
         dBadapter.open();
-        cursor=dBadapter.ottieniSiti();
+        cursor=dBadapter.getAllSites();
 
         ArrayList<Sito> lista = new ArrayList<>();
 
@@ -49,7 +49,7 @@ public class Activity_4_showAll extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Sito sito = adapter.getItem(position);
-                Log.i("cancella", String.valueOf(dBadapter.cancellaSito(sito.getId())));
+                Log.i("cancella", String.valueOf(dBadapter.deleteSite(sito.getId())));
                 lista.remove(sito);
                 adapter.notifyDataSetChanged();
                 return  true;

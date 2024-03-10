@@ -51,7 +51,7 @@ public class Activity_5_EsperimentiDiInserimento extends AppCompatActivity {
     public void inserimentoLento(int quanteVolte) {
         for (int i = 0; i < quanteVolte; i++) {
             Sito sito = new Sito("NOME: " + i, "URL: " + i);
-            dBadapter.aggiungiSito(sito.getNome(), sito.getUrl());
+            dBadapter.addSite(sito.getNome(), sito.getUrl());
 
         }
         dBadapter.close();

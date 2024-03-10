@@ -19,8 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import java.util.ArrayList;
-
 import database.DBadapter;
 
 public class Activity_2_browser extends AppCompatActivity {
@@ -95,7 +93,7 @@ public class Activity_2_browser extends AppCompatActivity {
             public void onClick(View v) {
                 String url = editText.getText().toString();
                 String nome = Sito.getNomeSito(url);
-                dbAdapter.aggiungiSito(nome, url);
+                dbAdapter.addSite(nome, url);
                 Toast.makeText(Activity_2_browser.this, "AGGIUNTO", Toast.LENGTH_SHORT).show();
             }
         });

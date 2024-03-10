@@ -6,8 +6,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import java.util.ArrayList;
-
 public class DBadapter {
 
 
@@ -50,24 +48,24 @@ public class DBadapter {
     }
 
 
-    public long aggiungiSito (String nome, String url){
+    public long addSite(String nome, String url){
         ContentValues initialValues = creaRecord(nome, url);
         return database.insertOrThrow(DATABASE_TABLE, null, initialValues);
     }
 
     // modifica un sito web esistente
-    public boolean modificaSito(long sitoID, String nome, String url){
+    public boolean updateSite(long sitoID, String nome, String url){
         ContentValues updateValues = creaRecord(nome, url);
         return database.update(DATABASE_TABLE, updateValues, KEY_ID + "=" + sitoID, null) >0;
     }
 
     // cancella sito
-    public int cancellaSito (long sitoID){
+    public int deleteSite(long sitoID){
         return database.delete(DATABASE_TABLE, KEY_ID + "=" + sitoID, null);
     }
 
     // recupera tutti i dati
-    public Cursor ottieniSiti(){
+    public Cursor getAllSites(){
         return database.query(DATABASE_TABLE, new String[]{KEY_ID, KEY_NOME, KEY_URL}, null, null, null, null, null);
     }
 
@@ -77,8 +75,8 @@ public class DBadapter {
     }
 
     // controlla se l'url è già presente nel db
-    public boolean checkIfExists(String currentUrl){
-        Cursor cursor = ottieniSiti();
+    public boolean checkIfUrlExists(String currentUrl){
+        Cursor cursor = getAllSites();
         while (cursor.moveToNext()){
             @SuppressLint("Range") String url = cursor.getString(cursor.getColumnIndex(this.KEY_URL));
             if (url.equals(currentUrl)) return true;
