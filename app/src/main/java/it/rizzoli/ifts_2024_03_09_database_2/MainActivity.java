@@ -36,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
         dbAdapter = new DBadapter(this);
         dbAdapter.open();
 
-        // Cursor cursor = dbAdapter.ottieniSiti();
+         Cursor cursor = dbAdapter.ottieniSiti();
 
-        String selectQuery = "SELECT * FROM sitiweb WHERE _id BETWEEN ? AND ?";
-        Cursor cursor = dbAdapter.getFromRawQuery(selectQuery, new String[]{"20", "28"});
+//        String selectQuery = "SELECT * FROM sitiweb WHERE _id BETWEEN ? AND ?";
+//        Cursor cursor = dbAdapter.getFromRawQuery(selectQuery, new String[]{"20", "28"});
 
         listaSiti=new ArrayList<Sito>();
 
@@ -140,8 +140,9 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.menu_item_1)
             startActivity(new Intent(MainActivity.this, Activity_3_edit.class));
         if(item.getItemId() == R.id.menu_item_2)
-
             startActivity(new Intent(MainActivity.this, Activity_4_showAll.class));
+        if(item.getItemId() == R.id.menu_item_3)
+            startActivity(new Intent(MainActivity.this, Activity_5_EsperimentiDiInserimento.class));
         return true;
     }
 

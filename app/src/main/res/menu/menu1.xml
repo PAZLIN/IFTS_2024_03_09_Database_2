@@ -8,6 +8,11 @@
         android:id="@+id/menu_item_2"
         android:title="Lista siti con ID ecc"/>
 
+    <item
+        android:id="@+id/menu_item_3"
+        android:title="Inserimenti multipli"/>
+
+
 
 
 </menu>
