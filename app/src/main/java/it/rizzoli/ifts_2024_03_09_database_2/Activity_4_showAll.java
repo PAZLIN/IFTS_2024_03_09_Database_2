@@ -22,6 +22,42 @@ public class Activity_4_showAll extends AppCompatActivity {
     private String LOG_TAG = "CV - Activity_4";
 
 
+    public void inizializza(){
+        setContentView(R.layout.activity4_show_all);
+
+        dBadapter=new DBadapter(this);
+        dBadapter.open();
+        cursor=dBadapter.ottieniSiti();
+
+        ArrayList<Sito> lista = new ArrayList<>();
+
+        while (cursor.moveToNext()){
+            @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(DBadapter.KEY_ID));
+            @SuppressLint("Range") String nome = cursor.getString(cursor.getColumnIndex(DBadapter.KEY_NOME));
+            @SuppressLint("Range") String url = cursor.getString(cursor.getColumnIndex(DBadapter.KEY_URL));
+            lista.add(new Sito(id, nome, url));
+        }
+        cursor.close();
+        //dBadapter.close();
+
+        ListView lv = (ListView) findViewById(R.id.act4_listView);
+        SitoAdapter_2 adapter = new SitoAdapter_2(this, R.layout.act4_lw, lista);
+        lv.setAdapter(adapter);
+
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @SuppressLint("Range")
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Sito sito = adapter.getItem(position);
+                Log.i("cancella", String.valueOf(dBadapter.cancellaSito(sito.getId())));
+                lista.remove(sito);
+                adapter.notifyDataSetChanged();
+                return  true;
+
+            }
+        });
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,42 +97,6 @@ public class Activity_4_showAll extends AppCompatActivity {
         super.onStop();
         Log.i(LOG_TAG, "ONSTOP");
 
-    }
-
-    public void inizializza(){
-        setContentView(R.layout.activity4_show_all);
-
-        dBadapter=new DBadapter(this);
-        dBadapter.open();
-        cursor=dBadapter.ottieniSiti();
-
-        ArrayList<Sito> lista = new ArrayList<>();
-
-        while (cursor.moveToNext()){
-            @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(DBadapter.KEY_ID));
-            @SuppressLint("Range") String nome = cursor.getString(cursor.getColumnIndex(DBadapter.KEY_NOME));
-            @SuppressLint("Range") String url = cursor.getString(cursor.getColumnIndex(DBadapter.KEY_URL));
-            lista.add(new Sito(id, nome, url));
-        }
-        cursor.close();
-        //dBadapter.close();
-
-        ListView lv = (ListView) findViewById(R.id.act4_listView);
-        SitoAdapter_2 adapter = new SitoAdapter_2(this, R.layout.act4_lw, lista);
-        lv.setAdapter(adapter);
-
-        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @SuppressLint("Range")
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Sito sito = adapter.getItem(position);
-                dBadapter.cancellaSito(sito.getId());
-                lista.remove(sito);
-                adapter.notifyDataSetChanged();
-                return  true;
-
-            }
-        });
     }
 
 

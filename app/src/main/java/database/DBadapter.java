@@ -37,6 +37,10 @@ public class DBadapter {
         dbHelper.close();
     }
 
+    public SQLiteDatabase getDB(){
+        return database;
+    }
+
 
    private ContentValues creaRecord(String nome, String url){
         ContentValues values = new ContentValues();
@@ -58,13 +62,18 @@ public class DBadapter {
     }
 
     // cancella sito
-    public boolean cancellaSito (long sitoID){
-        return database.delete(DATABASE_TABLE, KEY_ID + "=" + sitoID, null)>0;
+    public int cancellaSito (long sitoID){
+        return database.delete(DATABASE_TABLE, KEY_ID + "=" + sitoID, null);
     }
 
     // recupera tutti i dati
     public Cursor ottieniSiti(){
         return database.query(DATABASE_TABLE, new String[]{KEY_ID, KEY_NOME, KEY_URL}, null, null, null, null, null);
+    }
+
+    // recupera i dati con rawQuery
+    public Cursor getFromRawQuery (String rawQuery, String[]args){
+        return database.rawQuery(rawQuery, args);
     }
 
     // controlla se l'url è già presente nel db

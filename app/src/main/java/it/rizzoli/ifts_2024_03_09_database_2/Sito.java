@@ -20,6 +20,11 @@ public class Sito implements Serializable {
         this.nome = nome;
         this.url = url;
     }
+    public Sito(String nome, String url) {
+        this.nome = nome;
+        this.url = url;
+    }
+
 
     public int getId() {
         return id;

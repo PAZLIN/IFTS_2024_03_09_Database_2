@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -16,6 +17,7 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import database.*;
 
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private DBadapter dbAdapter;
+    private DbHelper dbHelper;
     private ArrayList<Sito> listaSiti;
     private String LOG_TAG = "CV - MainActivity";
 
@@ -33,9 +36,10 @@ public class MainActivity extends AppCompatActivity {
         dbAdapter = new DBadapter(this);
         dbAdapter.open();
 
+        // Cursor cursor = dbAdapter.ottieniSiti();
 
-        Cursor cursor = dbAdapter.ottieniSiti();
-
+        String selectQuery = "SELECT * FROM sitiweb WHERE _id BETWEEN ? AND ?";
+        Cursor cursor = dbAdapter.getFromRawQuery(selectQuery, new String[]{"20", "28"});
 
         listaSiti=new ArrayList<Sito>();
 
