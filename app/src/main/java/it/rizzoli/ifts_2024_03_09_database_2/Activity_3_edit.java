@@ -32,7 +32,8 @@ public class Activity_3_edit extends AppCompatActivity {
 
         boolean nuovoInsert;
 
-        if (getIntent()!=null) {
+
+        if (getIntent().getExtras()!=null) {
             Sito sito = (Sito) getIntent().getSerializableExtra("sito");
             nome = sito.getNome();
             url = sito.getUrl();

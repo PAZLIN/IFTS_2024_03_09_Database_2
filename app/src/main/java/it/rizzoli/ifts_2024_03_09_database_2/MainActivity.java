@@ -3,6 +3,7 @@ package it.rizzoli.ifts_2024_03_09_database_2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 //        SitoAdapter adapter = new SitoAdapter(this, android.R.layout.simple_list_item_1, listaSiti);
 //        lv.setAdapter(adapter);
 
+        // come prima ma on CursorAdapter
         ListView lv = (ListView) findViewById(R.id.act1_listView1);
         SiteCursorAdapter adapter = new SiteCursorAdapter(this, dbAdapter.getAllSites());
         lv.setAdapter(adapter);
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Sito sito = (Sito) adapter.getItem(position);
+                Sito sito = (Sito) adapter.getItem(position);  // sovrascritto getItem() in SiteCursorAdapter
                 Intent activity2 = new Intent(MainActivity.this, Activity_2_browser.class);
                 activity2.putExtra("sito",sito);
                 startActivity(activity2);
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Sito sito = (Sito) adapter.getItem(position);
+                Sito sito = (Sito) adapter.getItem(position); // sovrascritto getItem() in SiteCursorAdaptery
                 Intent activity3 = new Intent(MainActivity.this, Activity_3_edit.class);
                 activity3.putExtra("sito", sito);
                 startActivity(activity3);

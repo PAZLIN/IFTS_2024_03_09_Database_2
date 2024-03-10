@@ -10,6 +10,7 @@ import android.widget.CursorAdapter;
 import android.widget.TextView;
 
 import it.rizzoli.ifts_2024_03_09_database_2.R;
+import it.rizzoli.ifts_2024_03_09_database_2.Sito;
 
 public class SiteCursorAdapter extends CursorAdapter {
 
@@ -19,9 +20,10 @@ public class SiteCursorAdapter extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View resultView = inflater.inflate(R.layout.act4_lw, parent, false);
-        return resultView;
+        return LayoutInflater.from(context).inflate(R.layout.act4_lw, null);
+//        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+//        View resultView = inflater.inflate(R.layout.act4_lw, parent, false);
+//        return resultView;
     }
 
     @SuppressLint("Range")
@@ -35,5 +37,18 @@ public class SiteCursorAdapter extends CursorAdapter {
         textViewNome.setText(cursor.getString(cursor.getColumnIndex(DBadapter.KEY_NOME)));
         textViewUrl.setText(cursor.getString(cursor.getColumnIndex(DBadapter.KEY_URL)));
 
+    }
+
+
+    @Override
+    public Sito getItem(int position) {
+        Cursor c = getCursor();
+        if (c.moveToPosition(position)) {
+            int id = c.getInt(0);
+            String nome = c.getString(1);
+            String url = c.getString(2);
+            return new Sito(id, nome, url);
+        }
+        return null;
     }
 }

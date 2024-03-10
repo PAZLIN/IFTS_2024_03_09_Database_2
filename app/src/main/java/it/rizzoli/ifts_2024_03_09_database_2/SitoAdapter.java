@@ -33,7 +33,7 @@ public class SitoAdapter extends ArrayAdapter<Sito>{
         Sito sito = getItem(position);
         View view = convertView;
         if (convertView==null) {
-            view = (View) LayoutInflater.from(ctx).inflate(android.R.layout.simple_list_item_1, parent, false);
+            view = (View) LayoutInflater.from(ctx).inflate(res, parent, false);
         }
             TextView textView = (TextView) view.findViewById(android.R.id.text1);
             textView.setText(sito.getNome());
