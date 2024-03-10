@@ -21,13 +21,14 @@ import database.*;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private DBadapter dbAdapter;
     private ArrayList<Sito> listaSiti;
-    private String LOG_TAG = "MainActivity STATO";
+    private String LOG_TAG = "CV - MainActivity";
 
-    protected void inizializza() {
+    protected void inizializza (){
         setContentView(R.layout.activity_main);
-        Log.i(LOG_TAG, "mi trovo nella onCreate");
+
 
         dbAdapter = new DBadapter(this);
         dbAdapter.open();
@@ -79,32 +80,34 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         inizializza();
+        Log.i(LOG_TAG, "oncreate");
     } // ***** FINE ON CREATE
 
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.i(LOG_TAG, "mi trovo nella onStart");
+        Log.i(LOG_TAG, "onstart");
+
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i(LOG_TAG, "mi trovo nella onResume");
+        Log.i(LOG_TAG, "onresume");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.i(LOG_TAG, "mi trovo nella onPause");
+        Log.i(LOG_TAG, "onpause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.i(LOG_TAG, "mi trovo nella onStop");
+        Log.i(LOG_TAG, "onstop");
     }
 
     @Override
@@ -133,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.menu_item_1)
             startActivity(new Intent(MainActivity.this, Activity_3_edit.class));
         if(item.getItemId() == R.id.menu_item_2)
+
             startActivity(new Intent(MainActivity.this, Activity_4_showAll.class));
         return true;
     }

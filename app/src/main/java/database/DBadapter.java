@@ -33,11 +33,11 @@ public class DBadapter {
         return this;
     }
 
-
-
     public void close(){
         dbHelper.close();
     }
+
+
    private ContentValues creaRecord(String nome, String url){
         ContentValues values = new ContentValues();
         values.put(KEY_NOME, nome);
