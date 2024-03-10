@@ -60,8 +60,6 @@ public class Activity_5_EsperimentiDiInserimento extends AppCompatActivity {
 
     public void inserimentoVeloce(int quanteVolte){
         String sql = "INSERT OR REPLACE INTO sitiweb (nome, url) VALUES (?, ?)";
-        DBadapter dBadapter = new DBadapter(Activity_5_EsperimentiDiInserimento.this);
-        dBadapter.open();
         SQLiteDatabase db = dBadapter.getDB();
         db.beginTransactionNonExclusive();
         SQLiteStatement stmt = db.compileStatement(sql);

@@ -36,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
         dbAdapter = new DBadapter(this);
         dbAdapter.open();
 
-         Cursor cursor = dbAdapter.ottieniSiti();
+        Cursor cursor = dbAdapter.ottieniSiti();
 
 //        String selectQuery = "SELECT * FROM sitiweb WHERE _id BETWEEN ? AND ?";
-//        Cursor cursor = dbAdapter.getFromRawQuery(selectQuery, new String[]{"20", "28"});
+//        Cursor cursor = dbAdapter.getFromRawQuery(selectQuery, new String[]{"14540", "15200"});
 
         listaSiti=new ArrayList<Sito>();
 
